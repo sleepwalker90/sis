@@ -67,7 +67,6 @@ class CourseScheduleController extends Controller
             $query->whereIn('group_id', $courseLecturerAssignment->stream->groups->pluck('id'));
         })->get();
 
-        // Check for overlapping schedules
         $allSchedules = $lecturerSchedules->merge($streamSchedules)->merge($groupSchedules);
 
         // Check for overlapping schedules

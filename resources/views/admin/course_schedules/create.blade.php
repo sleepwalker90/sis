@@ -133,40 +133,39 @@
 
                     <div class="mb-4 grid grid-cols-1 md:grid-cols-4 gap-4">
                         <div>
-                            <label for="class_type" class="block text-sm font-medium text-gray-700">Class Type</label>
+                            <label for="class_type" class="block text-sm font-medium text-gray-700">{{ __('Class Type') }}</label>
                             <select id="class_type" name="class_type" class="block w-full mt-1 shadow-sm sm:text-sm border-gray-300 rounded-md" required x-model="classType">
-                                <option value="">Select Class Type</option>
+                                <option value="">{{ __('Select Class Type') }}</option>
                                 <template x-for="type in validClassTypes" :key="type">
-                                    <option :value="type" x-text="type.charAt(0).toUpperCase() + type.slice(1)"></option>
+                                    <option :value="type" x-text="{{ __('type.charAt(0).toUpperCase() + type.slice(1)') }}"></option>
                                 </template>
                             </select>
                         </div>
 
 
                         <div>
-                            <label for="day_of_week" class="block text-sm font-medium text-gray-700">Day of the Week</label>
+                            <label for="day_of_week" class="block text-sm font-medium text-gray-700">{{ __('Day of the week') }}</label>
                             <select id="day_of_week" name="day_of_week" class="block w-full mt-1 shadow-sm sm:text-sm border-gray-300 rounded-md" required>
-                                <option value="Monday">Monday</option>
-                                <option value="Tuesday">Tuesday</option>
-                                <option value="Wednesday">Wednesday</option>
-                                <option value="Thursday">Thursday</option>
-                                <option value="Friday">Friday</option>
-                                <option value="Saturday">Saturday</option>
-                                <option value="Sunday">Sunday</option>
+                                @php
+                                    $daysOfWeek = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];                                 
+                                @endphp
+                                @foreach($daysOfWeek as $day)
+                                    <option value="{{ $day }}">{{ __($day) }}</option>
+                                @endforeach
                             </select>
                         </div>
                         <div>
-                            <label for="start_time" class="block text-sm font-medium text-gray-700">Start Time</label>
+                            <label for="start_time" class="block text-sm font-medium text-gray-700">{{ __('Start Time') }} </label>
                             <input type="time" id="start_time" name="start_time" class="block w-full mt-1 shadow-sm sm:text-sm border-gray-300 rounded-md" required>
                         </div>
                         <div>
-                            <label for="end_time" class="block text-sm font-medium text-gray-700">End Time</label>
+                            <label for="end_time" class="block text-sm font-medium text-gray-700">{{ __('End Time') }}</label>
                             <input type="time" id="end_time" name="end_time" class="block w-full mt-1 shadow-sm sm:text-sm border-gray-300 rounded-md" required>
                         </div>
                         <div class="mb-4" x-show="classType === 'seminar' || classType === 'lab'" x-cloak>
-                            <label for="group_id" class="block text-sm font-medium text-gray-700">Group</label>
+                            <label for="group_id" class="block text-sm font-medium text-gray-700">{{ __('Group') }} </label>
                             <select id="group_id" name="group_id" class="block w-full mt-1 shadow-sm sm:text-sm border-gray-300 rounded-md" :required="classType === 'seminar' || classType === 'lab'">
-                                <option value="">Select Group</option>
+                                <option value="">{{ __('Select Group') }}</option>
                                 @foreach($groups as $group)
                                 <option value="{{ $group->id }}">{{ $group->number }}</option>
                                 @endforeach
@@ -187,7 +186,7 @@
                     @endif
 
                     <div class="flex justify-end">
-                        <x-primary-button>Save Schedule</x-primary-button>
+                        <x-primary-button>{{ __('Save Schedule') }}</x-primary-button>
                     </div>
                 </form>
             </div>

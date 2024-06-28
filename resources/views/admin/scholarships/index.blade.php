@@ -1,7 +1,7 @@
 <x-admin-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-            {{ __('Admin') }}
+            {{ __('Scholarship applications') }}
         </h2>
     </x-slot>
 
@@ -20,34 +20,16 @@
                     } 
                 }">
                 <div class="flex items-center justify-between">
-                    <div class="p-6 text-gray-900 dark:text-gray-100">
-                        {{ __("Scholarship applications") }}
-                    </div>
                     <div class="m-5">
                         <button x-on:click="showUpdateModal = true" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-                            Update Selected
+                            {{ __('Update Selected') }}
                         </button>
-                        <!-- <a href="{{ route('admin.users.create') }}" class="font-medium bg-blue-500 hover:bg-blue-600 text-white py-2 px-8 rounded-md">Update status</a> -->
                     </div>
 
                 </div>
 
 
                 <div>
-
-                    <div class="flex items-center justify-end flex-column flex-wrap md:flex-row space-y-4 md:space-y-0 pb-4 mx-5 bg-white dark:bg-gray-900">
-
-
-                        <label for="table-search" class="sr-only">Search</label>
-                        <div class="relative">
-                            <div class="absolute inset-y-0 rtl:inset-r-0 start-0 flex items-center ps-3 pointer-events-none">
-                                <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
-                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z" />
-                                </svg>
-                            </div>
-                            <input type="text" id="table-search-users" class="block p-2 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg w-80 bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Search for users">
-                        </div>
-                    </div>
                     <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
                         <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                             <tr>
@@ -58,36 +40,34 @@
                                     </div>
                                 </th>
                                 <th scope="col" class="px-6 py-3">
-                                    Name
+                                   {{ __('Name')}} 
                                 </th>
                                 <th scope="col" class="px-6 py-3">
-                                    Faculty Number
+                                    {{ __('Faculty Number') }}
                                 </th>
                                 <th scope="col" class="px-6 py-3">
-                                    GPA
+                                    {{ __('GPA') }} 
                                 </th>
                                 <th scope="col" class="px-6 py-3">
-                                    Status
+                                    {{ __('Status') }}
                                 </th>
                                 <th scope="col" class="px-6 py-3 text-center">
-                                    Action
+                                    {{ __('Actions') }} 
                                 </th>
                             </tr>
                         </thead>
                         <tbody>
                             @foreach ($scholarships as $scholarship)
-                            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+                            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600 items-center">
                                 <td class="w-4 p-4">
                                     <div class="flex items-center">
                                         <input type="checkbox" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" value="{{ $scholarship->id }}" name="scholarships[]" x-model="selectedScholarships">
                                         <label class="sr-only">checkbox</label>
                                     </div>
                                 </td>
-                                <th scope="row" class="flex items-center px-6 py-4 text-gray-900 whitespace-nowrap dark:text-white">
-
-                                    <div class="font-normal text-gray-500">{{ $scholarship->student->user->first_name }} {{ $scholarship->student->user->last_name }}</div>
-
-                                </th>
+                                <td class="px-6 py-4">
+                                    {{ $scholarship->student->user->first_name }} {{ $scholarship->student->user->last_name }}
+                                </td>
                                 <td class="px-6 py-4">
                                     {{ $scholarship->student->fn }}
                                 </td>
@@ -95,14 +75,14 @@
                                     {{ $scholarship->gpa }}
                                 </td>
                                 <td class="px-6 py-4">
-                                    {{ $scholarship->status }}
+                                    {{ __(ucwords($scholarship->status)) }}
                                 </td>
                                 <td class="px-3 py-4 text-end">
                                     <div class="flex items-center justify-center space-x-4">
                                         <form method="POST" action="{{ route('admin.scholarships.destroy', ['scholarship' => $scholarship->id]) }}" id="{{ $scholarship->id }}">
                                             @csrf
                                             @method('DELETE')
-                                            <button class="bg-red-500 hover:bg-red-600 text-white py-2 px-8 rounded-md" type="button" x-on:click="openConfirmationModal('{{ $scholarship->id }}', '{{ $scholarship->student->user->first_name }} {{ $scholarship->student->user->last_name }}')">Delete</button>
+                                            <button class="bg-red-500 hover:bg-red-600 text-white py-2 px-8 rounded-md" type="button" x-on:click="openConfirmationModal('{{ $scholarship->id }}', '{{ $scholarship->student->user->first_name }} {{ $scholarship->student->user->last_name }}')">{{ __('Delete') }}</button>
 
                                         </form>
                                     </div>
@@ -144,11 +124,11 @@
                                         </div>
                                         <div class="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
                                             <h3 class="text-lg leading-6 font-medium text-gray-900" id="modal-title">
-                                                Delete scholarship application
+                                                {{ __('Delete Scholarship Application') }} 
                                             </h3>
                                             <div class="mt-2">
                                                 <p class="text-sm text-gray-500">
-                                                    Are you sure you want to delete scholarship application of <strong x-text="scholarshipName"></strong>? This action cannot be undone.
+                                                    {{ __('Are you sure you want to delete scholarship application of') }} <strong x-text="scholarshipName"></strong>? {{ __('This action cannot be undone.') }}.
                                                 </p>
                                             </div>
                                         </div>
@@ -179,26 +159,26 @@
                                         <div class="sm:flex sm:items-start">
                                             <div class="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
                                                 <h3 class="text-lg leading-6 font-medium text-gray-900" id="modal-title">
-                                                    Update statuses of the selected scholarship applications
+                                                    {{ __('Update statuses of the selected scholarship applications') }}
                                                 </h3>
                                                 <div class="mt-2">
                                                     <input type="hidden" name="scholarships" :value="selectedScholarships">
                                                     <select name="newStatus" class="block w-full mt-2">
-                                                        <option value="approved">Approved</option>
-                                                        <option value="rejected">Denied</option>
-                                                        <option value="in review">In Review</option>
+                                                        <option value="approved">{{ __('Approved') }}</option>
+                                                        <option value="rejected">{{ __('Rejected') }}</option>
+                                                        <option value="in review">{{ __('In Review') }}</option>
                                                     </select>
-                                                    <input type="text" name="reason" placeholder="Enter reason for status change" class="block w-full mt-2">
+                                                    <input type="text" name="reason" placeholder="{{ __('Enter reason for status change') }}" class="block w-full mt-2">
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
                                         <button type="submit" class="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-blue-600 text-base font-medium text-white hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 sm:ml-3 sm:w-auto sm:text-sm">
-                                            Confirm
+                                            {{ __('Confirm') }}
                                         </button>
                                         <button type="button" x-on:click="showUpdateModal = false" class="mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm">
-                                            Cancel
+                                            {{ __('Cancel') }}
                                         </button>
                                     </div>
                                 </form>

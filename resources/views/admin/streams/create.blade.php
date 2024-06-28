@@ -15,12 +15,12 @@
                     @endif
 
                     <div class="mb-4">
-                        <label for="number" class="block text-sm font-medium text-gray-700">Stream Number</label>
+                        <label for="number" class="block text-sm font-medium text-gray-700">{{ __('Stream Number') }}</label>
                         <input type="number" id="number" name="number" class="block w-full mt-1 shadow-sm sm:text-sm border-gray-300 rounded-md" value="{{ $stream->number ?? old('number') }}" required>
                     </div>
 
                     <div class="mb-4">
-                        <label for="study_plan_id" class="block text-sm font-medium text-gray-700">Study Plan</label>
+                        <label for="study_plan_id" class="block text-sm font-medium text-gray-700">{{ __('Study Plan') }}</label>
                         <select id="study_plan_id" name="study_plan_id" class="block w-full mt-1 shadow-sm sm:text-sm border-gray-300 rounded-md" required>
                             @foreach($studyPlans as $studyPlan)
                             <option value="{{ $studyPlan->id }}" {{ $stream && $stream->study_plan_id == $studyPlan->id ? 'selected' : '' }}>{{ $studyPlan->title }}</option>
@@ -29,7 +29,7 @@
                     </div>
 
                     <div class="mb-4">
-                        <label for="academic_year_id" class="block text-sm font-medium text-gray-700">Academic Year</label>
+                        <label for="academic_year_id" class="block text-sm font-medium text-gray-700">{{ __('Academic Year') }}</label>
                         <select id="academic_year_id" name="academic_year_id" class="block w-full mt-1 shadow-sm sm:text-sm border-gray-300 rounded-md" required>
                             @foreach($academicYears as $academicYear)
                             <option value="{{ $academicYear->id }}" {{ $stream && $stream->academic_year_id == $academicYear->id ? 'selected' : '' }}>{{ $academicYear->year }}</option>
@@ -38,7 +38,7 @@
                     </div>
 
                     <div class="flex justify-end">
-                        <x-primary-button>{{ isset($stream->id) ? 'Update Stream' : 'Create Stream' }}</x-primary-button>
+                        <x-primary-button>{{ isset($stream->id) ? __('Update Stream') : __('Create Stream') }}</x-primary-button>
                     </div>
 
                     @if (isset($stream->id))

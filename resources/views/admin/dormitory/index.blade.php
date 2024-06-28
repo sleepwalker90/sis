@@ -1,7 +1,7 @@
 <x-admin-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-            {{ __('Admin') }}
+            {{ __('Dormitories') }}
         </h2>
     </x-slot>
 
@@ -20,15 +20,12 @@
                     } 
                 }">
                 
-                <div class="flex items-center justify-between">
-                    <div class="p-6 text-gray-900 dark:text-gray-100">
-                        {{ __("Общежития") }}
-                    </div class="m-5">
+                <div class="flex items-center justify-end">
                     <div>
-                        <a href="{{ route('admin.dormitory-applications.pending') }}" class="font-medium bg-blue-500 hover:bg-blue-600 text-white py-2 px-8 rounded-md">Молби за общежитие</a>
+                        <a href="{{ route('admin.dormitory-applications.pending') }}" class="font-medium bg-blue-500 hover:bg-blue-600 text-white py-2 px-8 rounded-md">{{ __('Dormitory applications' )}}</a>
                     </div>
                     <div class="m-5">
-                        <a href="{{ route('admin.dormitories.create') }}" class="font-medium bg-blue-500 hover:bg-blue-600 text-white py-2 px-8 rounded-md">Добави общежитие</a>
+                        <a href="{{ route('admin.dormitories.create') }}" class="font-medium bg-blue-500 hover:bg-blue-600 text-white py-2 px-8 rounded-md">{{ __('Add dormitory') }}</a>
                     </div>
 
                 </div>
@@ -43,16 +40,16 @@
                             <tr>
                                 
                                 <th scope="col" class="p-3">
-                                    Блок
+                                    {{ __('Building') }}
                                 </th>
                                 <th scope="col" class="p-3">
-                                    Използвани легла/Капацитет
+                                    {{ __('Occupied beds').' / '.__('Capacity') }}
                                 </th>
                                 <th scope="col" class="p-3">
-                                    Свободни стаи/Капацитет
+                                    {{ __('Occupied rooms').' / '.__('Capacity') }}
                                 </th>
                                 <th scope="col" class="p-3 text-end">
-                                    Действия
+                                    {{ __('Actions') }}
                                 </th>
                             </tr>
                         </thead>
@@ -72,11 +69,11 @@
                                         </td>
                                         <td class="px-3 py-4 text-end">
                                             <div class="flex items-center justify-end space-x-4">
-                                                <a href="{{ route('admin.dormitories.edit', ['dormitory' => $dormitory->id] ) }}" class="font-medium bg-blue-500 hover:bg-blue-600 text-white py-2 px-8 rounded-md">Промени</a>
+                                                <a href="{{ route('admin.dormitories.edit', ['dormitory' => $dormitory->id] ) }}" class="font-medium bg-blue-500 hover:bg-blue-600 text-white py-2 px-8 rounded-md">{{ __('Edit')}}</a>
                                                 <form method="POST" action="{{ route('admin.dormitories.destroy', ['dormitory' => $dormitory->id]) }}" id="{{ $dormitory->id }}">
                                                     @csrf
                                                     @method('DELETE')
-                                                    <button class="bg-red-500 hover:bg-red-600 text-white py-2 px-8 rounded-md" type="button" x-on:click="openConfirmationModal('{{ $dormitory->id }}', '{{ $dormitory->building }}')">Премахни</button>
+                                                    <button class="bg-red-500 hover:bg-red-600 text-white py-2 px-8 rounded-md" type="button" x-on:click="openConfirmationModal('{{ $dormitory->id }}', '{{ $dormitory->building }}')">{{ __('Delete')}}</button>
 
                                                 </form>
                                             </div>

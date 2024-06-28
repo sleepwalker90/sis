@@ -60,13 +60,10 @@ class Course extends Model
         return $this->hasMany(Course::class, 'elective_course_group_id');
     }
 
-
-    // Relationship with students through marks
     public function students() {
         return $this->belongsToMany(Student::class, 'marks')->withPivot('mark', 'type');
     }
 
-    // Relationship with marks directly 
     public function marks() {
         return $this->hasMany(Mark::class);
     }

@@ -1,7 +1,7 @@
 <x-admin-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-            {{ __('Admin') }}
+            {{ __('Courses') }}
         </h2>
     </x-slot>
 
@@ -19,12 +19,9 @@
                     } 
                 }">
 
-                <div class="flex items-center justify-between">
-                    <div class="p-6 text-gray-900 dark:text-gray-100">
-                        {{ __("Courses!") }}
-                    </div>
+                <div class="flex items-center justify-end">
                     <div class="m-5">
-                        <a href="/courses/create" class="font-medium bg-blue-500 hover:bg-blue-600 text-white py-2 px-8 rounded-md">Add new course</a>
+                        <a href="/courses/create" class="font-medium bg-blue-500 hover:bg-blue-600 text-white py-2 px-8 rounded-md">{{ __('Add new course') }}</a>
                     </div>
                 </div>
 
@@ -40,19 +37,19 @@
                                     </div>
                                 </th>
                                 <th scope="col" class="p-3">
-                                    Предмет
+                                    {{ __('Course') }}
                                 </th>
                                 <th scope="col" class="p-3">
-                                    Кредити
+                                    {{ __('Credits') }}
                                 </th>
                                 <th scope="col" class="p-3">
-                                    Код
+                                    {{ __('Code') }}
                                 </th>
                                 <th scope="col" class="p-3">
-                                    Контрол
+                                    {{ __('Control type') }}
                                 </th>
                                 <th scope="col" class="p-3 text-end">
-                                    Actions
+                                    {{ __('Actions') }} 
                                 </th>
                             </tr>
                         </thead>
@@ -61,10 +58,6 @@
                             @if ($course->electiveGroup == null)
                             <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
                                 <td class="w-4 p-4">
-                                    <div class="flex items-center">
-                                        <input id="checkbox-table-search-1" type="checkbox" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-                                        <label for="checkbox-table-search-1" class="sr-only">checkbox</label>
-                                    </div>
                                 </td>
                                 <td class="px-3 py-4">
                                     <div class="font-semibold text-black"><a href="{{ route('admin.courses.show', ['course' => $course->id] ) }}">{{ $course->name }}</a></div>
@@ -80,11 +73,11 @@
                                 </td>
                                 <td class="px-3 py-4 text-end">
                                     <div class="flex items-center justify-end space-x-4">
-                                        <a href="{{ route('courses.edit', ['course' => $course->id] ) }}" class="font-medium bg-blue-500 hover:bg-blue-600 text-white py-2 px-8 rounded-md">Edit</a>
+                                        <a href="{{ route('courses.edit', ['course' => $course->id] ) }}" class="font-medium bg-blue-500 hover:bg-blue-600 text-white py-2 px-8 rounded-md">{{ __('Edit') }}</a>
                                         <form method="POST" action="{{ route('courses.destroy', ['course' => $course->id]) }}" id="{{ $course->id }}">
                                             @csrf
                                             @method('DELETE')
-                                            <button class="bg-red-500 hover:bg-red-600 text-white py-2 px-8 rounded-md" type="button" x-on:click="openConfirmationModal('{{ $course->id }}', '{{ $course->name }}')">Delete</button>
+                                            <button class="bg-red-500 hover:bg-red-600 text-white py-2 px-8 rounded-md" type="button" x-on:click="openConfirmationModal('{{ $course->id }}', '{{ $course->name }}')">{{ __('Delete') }}</button>
 
                                         </form>
                                     </div>
@@ -115,11 +108,11 @@
                                     </div>
                                     <div class="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
                                         <h3 class="text-lg leading-6 font-medium text-gray-900" id="modal-title">
-                                            Delete course
+                                            {{ __('Delete') . ' ' .  __('course') }} 
                                         </h3>
                                         <div class="mt-2">
                                             <p class="text-sm text-gray-500">
-                                                Are you sure you want to delete course <strong x-text="courseName"></strong>? This action cannot be undone.
+                                                {{ __('Are you sure you want to delete course') }} <strong x-text="courseName"></strong>? {{ __('This action cannot be undone.') }}
                                             </p>
                                         </div>
                                     </div>
@@ -127,10 +120,10 @@
                             </div>
                             <div class="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
                                 <button type="button" x-on:click="document.getElementById(courseId).submit()" class="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-red-600 text-base font-medium text-white hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 sm:ml-3 sm:w-auto sm:text-sm">
-                                    Delete
+                                    {{ __('Delete') }}
                                 </button>
                                 <button type="button" x-on:click="showConfirmation = false" class="mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm">
-                                    Cancel
+                                    {{ __('Cancel') }}
                                 </button>
                             </div>
                         </div>

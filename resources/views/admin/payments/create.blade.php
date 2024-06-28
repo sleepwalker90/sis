@@ -13,17 +13,17 @@
                         @csrf
 
                         <div class="mb-4">
-                            <label for="payment_option" class="block text-sm font-medium text-gray-700">Payment Option</label>
+                            <label for="payment_option" class="block text-sm font-medium text-gray-700">{{ __('Payment Option') }}:</label>
                             <select id="payment_option" name="payment_option" x-model="paymentOption" class="block w-full mt-1 shadow-sm sm:text-sm border-gray-300 rounded-md">
-                                <option value="individual">Individual</option>
-                                <option value="study_plan">Study Plan</option>
-                                <option value="dormitory">Dormitory</option>
+                                <option value="individual">{{ __('Individual') }}</option>
+                                <option value="study_plan">{{ __('Study Plan') }}</option>
+                                <option value="dormitory">{{ __('Dormitory') }}</option>
                             </select>
                         </div>
 
                         <div class="mb-4" x-show="paymentOption === 'individual'">
-                            <label for="student_search" class="block text-sm font-medium text-gray-700">Search and Select Student</label>
-                            <input type="text" id="student_search" x-model="searchQuery" @input="searchStudents()" class="block w-full mt-1 shadow-sm sm:text-sm border-gray-300 rounded-md" placeholder="Search by name, FN, or EGN">
+                            <label for="student_search" class="block text-sm font-medium text-gray-700">{{ __('Search and Select Student') }}</label>
+                            <input type="text" id="student_search" x-model="searchQuery" @input="searchStudents()" class="block w-full mt-1 shadow-sm sm:text-sm border-gray-300 rounded-md" placeholder="{{ __('Search by name, FN, or EGN') }}" aria-label="Search by name, FN, or EGN">
                             <select name="student_id" id="student_id" required class="block w-full mt-1 shadow-sm sm:text-sm border-gray-300 rounded-md">
                                 <template x-for="student in filteredStudents" :key="student.id">
                                     <option :value="student.id" x-text="`${student.user.first_name} ${student.user.last_name} (${student.fn}, ${student.egn})`"></option>
@@ -32,7 +32,7 @@
                         </div>
 
                         <div class="mb-4" x-show="paymentOption === 'study_plan'">
-                            <label for="study_plan_id" class="block text-sm font-medium text-gray-700">Select Study Plan</label>
+                            <label for="study_plan_id" class="block text-sm font-medium text-gray-700">{{ __('Select Study Plan') }}</label>
                             <select id="study_plan_id" name="study_plan_id" class="block w-full mt-1 shadow-sm sm:text-sm border-gray-300 rounded-md">
                                 @foreach($studyPlans as $studyPlan)
                                 <option value="{{ $studyPlan->id }}">{{ $studyPlan->title }}</option>
@@ -41,7 +41,7 @@
                         </div>
 
                         <div class="mb-4" x-show="paymentOption === 'dormitory'">
-                            <label for="dormitory_id" class="block text-sm font-medium text-gray-700">Select Dormitory</label>
+                            <label for="dormitory_id" class="block text-sm font-medium text-gray-700">{{ __('Select Dormitory') }}</label>
                             <select id="dormitory_id" name="dormitory_id" class="block w-full mt-1 shadow-sm sm:text-sm border-gray-300 rounded-md">
                                 @foreach($dormitories as $dormitory)
                                 <option value="{{ $dormitory->id }}">{{ $dormitory->building }}</option>
@@ -50,22 +50,22 @@
                         </div>
 
                         <div class="mb-4">
-                            <label for="payment_type" class="block text-sm font-medium text-gray-700">Payment Type</label>
+                            <label for="payment_type" class="block text-sm font-medium text-gray-700">{{ __('Payment Type') }}:</label>
                             <select id="payment_type" name="payment_type" class="block w-full mt-1 shadow-sm sm:text-sm border-gray-300 rounded-md">
-                                <option value="semester_tax">Semester Tax</option>
-                                <option value="dorm_rent">Dorm Rent</option>
-                                <option value="utilities">Utilities</option>
+                                <option value="semester_tax">{{ __('Semester Tax') }}</option>
+                                <option value="dorm_rent">{{ __('Dorm Rent') }}</option>
+                                <option value="utilities">{{ __('Utilities') }}</option>
                             </select>
                         </div>
 
                         <div class="mb-4">
-                            <label for="amount" class="block text-sm font-medium text-gray-700">Amount (BGN)</label>
+                            <label for="amount" class="block text-sm font-medium text-gray-700">{{ __('Amount') }} (BGN)</label>
                             <input type="number" id="amount" name="amount" step="0.01" required class="block w-full mt-1 shadow-sm sm:text-sm border-gray-300 rounded-md">
                         </div>
                         <x-error></x-error>
 
                         <div class="flex justify-end">
-                            <x-primary-button>Create Payment</x-primary-button>
+                            <x-primary-button>{{ __('Create Payment') }}</x-primary-button>
                         </div>
                     </form>
                 </div>

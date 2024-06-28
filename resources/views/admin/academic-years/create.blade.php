@@ -1,7 +1,7 @@
 <x-admin-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-            {{ isset($academicYear->id) ? 'Edit Academic Year' : 'Create Academic Year' }}
+            {{ isset($academicYear->id) ? __('Edit Academic Year') : __('Create Academic Year') }}
         </h2>
     </x-slot>
 
@@ -15,7 +15,7 @@
                     @endif
 
                     <div class="mb-4">
-                        <label for="year" class="block text-sm font-medium text-gray-700">Academic Year</label>
+                        <label for="year" class="block text-sm font-medium text-gray-700">{{ __('Academic Year') }}</label>
                         <input type="text" id="year" name="year" class="block mt-1 shadow-sm sm:text-sm border-gray-300 rounded-md" value="{{ $academicYear->year ?? old('year') }}" required>
                         @error('year')
                         <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
@@ -23,7 +23,7 @@
                     </div>
 
                     <div class="flex justify-end">
-                        <x-primary-button>{{ isset($academicYear->id) ? 'Update Academic Year' : 'Create Academic Year' }}</x-primary-button>
+                        <x-primary-button>{{ isset($academicYear->id) ? __('Update Academic Year') : __('Create Academic Year') }}</x-primary-button>
                     </div>
 
 

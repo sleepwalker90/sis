@@ -38,13 +38,13 @@
                     @endif
 
                     <div class="flex justify-end">
-                        <x-primary-button>Update Group</x-primary-button>
+                        <x-primary-button>{{ __('Update Group') }}</x-primary-button>
                     </div>
                 </form>
 
                 <div class="mt-4 flex justify-end">
                     <a href="{{ route('admin.groups.addStudent', $group->id) }}">
-                        <button class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-3 rounded-md">{{ __(strtoupper('Add Student')) }}</button>
+                        <button class="bg-blue-500 hover:bg-blue-600 text-white py-2 px-3 rounded-md">{{ __('Add Student') }}</button>
                     </a>
                 </div>
 

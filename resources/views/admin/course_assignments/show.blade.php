@@ -1,7 +1,7 @@
 <x-admin-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-            {{ __('Course Lecturer Assignments') }}
+            {{ __('Assign lecturer to the course') }}
         </h2>
     </x-slot>
 
@@ -36,7 +36,7 @@
                                                 <button type="submit" class="bg-red-500 hover:bg-red-600 text-white font-bold py-1 px-3 rounded">{{ __('Unassign') }}</button>
                                             </form>
                                             <a href="{{ route('admin.course_schedules.create', $assignment) }}">
-                                                <button class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-1 px-3 rounded">{{ __('Create Schedule') }}</button>
+                                                <button class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-1 px-3 rounded">{{ __('Schedule') }}</button>
                                             </a>
                                             <a href="{{ route('admin.attestations.show', $assignment) }}">
                                                 <button class="bg-green-500 hover:bg-green-600 text-white font-bold py-1 px-3 rounded">{{ __('Attestations') }}</button>

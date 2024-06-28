@@ -76,7 +76,9 @@ class CourseController extends Controller
      */
     public function edit(Course $course)
     {
-        return view('admin.courses.edit', ['course' => $course, 'majors' => Major::all(), 'ecourses' => Course::where('is_elective_group', true)->get()]);
+        $majors = Major::all();
+        $ecourses = Course::where('is_elective_group', true)->get();
+        return view('admin.courses.edit', compact('course', 'majors', 'ecourses'));
     }
 
     /**

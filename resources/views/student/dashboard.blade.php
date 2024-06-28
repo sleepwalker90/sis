@@ -1,7 +1,7 @@
 <x-student-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-            {{ __('Student') }}
+            {{ __('Student Info') }}
         </h2>
     </x-slot>
 
@@ -104,7 +104,7 @@
                                                 {{ __('Stream') }} 
                                             </dt>
                                             <dd class="mx-2 mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-                                                {{ Auth::user()->student->group->stream->number }}
+                                                {{ Auth::user()->student->group?->stream->number }}
                                             </dd>
                                         </div>
                                         <div class="py-2 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6 flex">

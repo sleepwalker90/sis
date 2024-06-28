@@ -7,7 +7,11 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Storage;
+use Intervention\Image\ImageManager;
+
 use Illuminate\View\View;
+use Intervention\Image\Drivers\Imagick\Driver;
 
 class ProfileController extends Controller
 {
@@ -24,17 +28,32 @@ class ProfileController extends Controller
     /**
      * Update the user's profile information.
      */
-    public function update(ProfileUpdateRequest $request): RedirectResponse
+    public function update(Request $request): RedirectResponse
     {
-        $request->user()->fill($request->validated());
+        $request->validate([
+            'photo' => 'nullable|image|mimes:png,jpg,jpeg|max:2048',
+        ]);
 
-        if ($request->user()->isDirty('email')) {
-            $request->user()->email_verified_at = null;
+        $user = $request->user();
+
+        if($request->hasFile('photo')) {
+            if($user->photo) {
+                Storage::disk('public')->delete($user->photo);
+            }
+
+            $image = ImageManager::imagick()->read($request->file('photo')->get());
+            $image->scaleDown(150,150);
+    
+            $photoPath = 'profile-photos/' . uniqid() . '.' . $request->file('photo')->getClientOriginalExtension();
+            Storage::disk('public')->put($photoPath, (string) $image->encode());
+    
+            $user->photo = $photoPath;
         }
 
-        $request->user()->save();
+        $user->save();
 
-        return Redirect::route('profile.edit')->with('status', 'profile-updated');
+        return redirect()->route('profile.edit')->with('status', 'profile-updated');
+
     }
 
     /**

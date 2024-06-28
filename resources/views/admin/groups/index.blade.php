@@ -29,11 +29,11 @@
                             <td class="border px-4 py-2">{{ $group->stream->studyPlan->title }}</td>
                             <td class="border px-4 py-2">{{ $group->academicYear->year }}</td>
                             <td class="border px-4 py-2 text-center">
-                                <a href="{{ route('admin.groups.edit', $group) }}" ><button class="bg-yellow-500 hover:bg-yellow-600 text-white font-bold py-1 px-3 rounded mb-2 md:mb-0">Edit</button></a>
+                                <a href="{{ route('admin.groups.edit', $group) }}" ><button class="bg-yellow-500 hover:bg-yellow-600 text-white font-bold py-1 px-3 rounded mb-2 md:mb-0">{{ __('Edit') }}</button></a>
                                 <form action="{{ route('admin.groups.destroy', $group) }}" method="POST" class="inline-block" onsubmit="return confirm('Are you sure you want to delete this group?');">
                                     @csrf
                                     @method('DELETE')
-                                    <button type="submit" class="bg-red-500 hover:bg-red-600 text-white font-bold py-1 px-3 rounded">Delete</button>
+                                    <button type="submit" class="bg-red-500 hover:bg-red-600 text-white font-bold py-1 px-3 rounded">{{ __('Delete') }}</button>
                                 </form>
                             </td>
                         </tr>

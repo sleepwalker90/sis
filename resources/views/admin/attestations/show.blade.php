@@ -1,10 +1,10 @@
 <x-admin-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-            {{ __('Attestations for Stream ' . $assignment->stream->number . ' in ' . $assignment->course->name) }}
+            {{ __('Attestations for stream') . ' ' . $assignment->stream->number . ' in ' . $assignment->course->name }}
         </h2>
         <h3 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-            {{ __('Lecturer: ' . $assignment->lecturer->user->first_name . ' ' . $assignment->lecturer->user->last_name) }}
+            {{ __('Lecturer') .': ' . $assignment->lecturer->user->first_name . ' ' . $assignment->lecturer->user->last_name }}
         </h3>
     </x-slot>
 
@@ -86,7 +86,7 @@
                     @endif
 
                     <div class="flex justify-end mt-4">
-                        <x-primary-button>Save Attestations</x-primary-button>
+                        <x-primary-button>{{ __('Save Attestations') }}</x-primary-button>
                     </div>
                 </form>
             </div>

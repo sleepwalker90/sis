@@ -1,7 +1,7 @@
 <x-admin-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-            {{ __('Admin') }}
+            {{ __('Study Plan') . ': ' . $studyPlan->title }}
         </h2>
     </x-slot>
 
@@ -23,18 +23,14 @@
 
                 <div class="flex items-center justify-between">
                     <div class="p-6 text-gray-900 dark:text-gray-100">
-                        {{ __("Study Plan: " . $studyPlan->title) }}
+                        
                     </div>
                     <div class="m-5">
-                        <a href="{{ route('admin.studyplans.courses.attach.form', $studyPlan) }}" class="font-medium bg-blue-500 hover:bg-blue-600 text-white py-2 px-8 rounded-md">Add course</a>
+                        <a href="{{ route('admin.studyplans.courses.attach.form', $studyPlan) }}" class="font-medium bg-blue-500 hover:bg-blue-600 text-white py-2 px-8 rounded-md">{{ __('Add course') }}</a>
                     </div>
                 </div>
 
                 <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
-
-                    <div class="py-2">
-                        <p class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">{{ $studyPlan->title }}</p>
-                    </div>
 
                     <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
 
@@ -42,23 +38,23 @@
                             <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                                 <tr>
                                     <th scope="col" class="p-3">
-                                        Предмет
+                                        {{ __('Course') }}
                                     </th>
                                     <th scope="col" class="p-3">
-                                        Код
+                                        {{ __('Code') }}
                                     </th>
                                     <th scope="col" class="p-3">
-                                        Изпит
+                                        {{ __('Exam') }}
                                     </th>
                                     <th scope="col" class="p-3 text-end">
-                                        Actions
+                                        {{ __('Actions') }}
                                     </th>
                                 </tr>
                             </thead>
                             <tbody>
                                 @foreach ($coursesBySemester as $semester => $courses)
                                 <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-                                    <th colspan="6" class="p-4 text-center text-gray-700 bg-gray-50 dark:bg-gray-700 dark:text-gray-400">Семестър {{ $semester }}</th>
+                                    <th colspan="6" class="p-4 text-center text-gray-700 bg-gray-50 dark:bg-gray-700 dark:text-gray-400">{{__('Semester') . ' ' . $semester }}</th>
                                 </tr>
                                     @foreach ($courses as $course)
                                         <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
@@ -80,7 +76,7 @@
                                                     <form method="POST" action="{{ route('admin.studyplans.courses.detach', ['studyPlan' => $studyPlan, 'course' => $course->id]) }}" id="{{ $course->id }}">
                                                         @csrf
                                                         @method('DELETE')
-                                                        <button class="bg-red-500 hover:bg-red-600 text-white py-2 px-8 rounded-md" type="button" x-on:click="openConfirmationModal('{{ $studyPlan->id }}', '{{ $course->name }}', '{{ $course->id }}')">Delete</button>
+                                                        <button class="bg-red-500 hover:bg-red-600 text-white py-2 px-8 rounded-md" type="button" x-on:click="openConfirmationModal('{{ $studyPlan->id }}', '{{ $course->name }}', '{{ $course->id }}')">{{ __('Delete') }}</button>
                                                     </form>
                                                 </div>
                                             </td>

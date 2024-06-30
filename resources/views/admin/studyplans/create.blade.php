@@ -12,12 +12,12 @@
                     @csrf
 
                     <div class="mb-4">
-                        <label for="title" class="block text-sm font-medium text-gray-700">Title</label>
+                        <label for="title" class="block text-sm font-medium text-gray-700">{{ __('Name') }}</label>
                         <input type="text" id="title" name="title" class="block w-full mt-1 shadow-sm sm:text-sm border-gray-300 rounded-md" value="{{ old('title') }}">
                     </div>
 
                     <div class="mb-4">
-                        <label for="major_id" class="block text-sm font-medium text-gray-700">Major</label>
+                        <label for="major_id" class="block text-sm font-medium text-gray-700">{{ __('Major') }}</label>
                         <select id="major_id" name="major_id" class="block w-full mt-1 shadow-sm sm:text-sm border-gray-300 rounded-md">
                             @foreach($majors as $major)
                                 <option value="{{ $major->id }}">{{ $major->name }}</option>
@@ -26,7 +26,7 @@
                     </div>
 
                     <div class="mb-4">
-                        <label for="academic_year_id" class="block text-sm font-medium text-gray-700">Academic Year</label>
+                        <label for="academic_year_id" class="block text-sm font-medium text-gray-700">{{ __('Academic Year') }}</label>
                         <select id="academic_year_id" name="academic_year_id" class="block w-full mt-1 shadow-sm sm:text-sm border-gray-300 rounded-md">
                             @foreach($academicYears as $academicYear)
                                 <option value="{{ $academicYear->id }}">{{ $academicYear->year }}</option>
@@ -35,15 +35,15 @@
                     </div>
 
                     <div class="mb-4">
-                        <label for="status" class="block text-sm font-medium text-gray-700">Status</label>
+                        <label for="status" class="block text-sm font-medium text-gray-700">{{ __('Status') }}</label>
                         <select id="status" name="status" class="block w-full mt-1 shadow-sm sm:text-sm border-gray-300 rounded-md">
-                            <option value="active">Active</option>
-                            <option value="inactive">Inactive</option>
+                            <option value="active">{{ __('Active') }}</option> 
+                            <option value="inactive">{{ __('Inactive') }}</option>
                         </select>
                     </div>
 
                     <div class="flex justify-end">
-                        <x-primary-button>Create Study Plan</x-primary-button>
+                        <x-primary-button>{{ __('Create Study Plan') }}</x-primary-button>
                     </div>
                 </form>
             </div>

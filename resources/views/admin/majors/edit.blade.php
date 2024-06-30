@@ -1,7 +1,7 @@
 <x-admin-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-            {{ __('Admin') }}
+            {{ __('Edit Major') }}
         </h2>
     </x-slot>
 
@@ -10,7 +10,7 @@
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
 
                 <div class="p-6 text-gray-900 dark:text-gray-100">
-                    {{ __("Update $major->name major") }}
+                    {{ __('Update') . ' ' . $major->name }}
                 </div>
 
                 <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
@@ -19,16 +19,16 @@
                         @method('PATCH')
 
                         <div class="py-2">
-                            <label for="name" class="block text-sm font-medium text-gray-700">Major Title</label>
+                            <label for="name" class="block text-sm font-medium text-gray-700">{{ __('Major Name') }}:</label>
                             <input type="text" name="name" id="name" required class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" value="{{ $major->name }}">
                         </div>
                         @error('name')
                         <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
                         @enderror
 
-                        <label for="faculty_id" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Факултет:</label>
+                        <label for="faculty_id" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">{{ __('Faculty')}}:</label>
                         <select id="faculty_id" name="faculty_id" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-md">
-                            <option selected>Choose a major</option>
+                            <option selected>Choose a faculty</option>
                             @foreach ($faculties as $faculty)
                             <option value="{{ $faculty->id }}" {{ $faculty->id == $major->faculty_id ? 'selected' : ''}}>{{ $faculty->name }}</option>
 
@@ -37,7 +37,7 @@
                         @error('semester')
                         <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
                         @enderror
-                        <label for="education_type_id" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Вид обучение:</label>
+                        <label for="education_type_id" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">{{ __('Education type')}}:</label>
                         <select id="education_type_id" name="education_type_id" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-md">
                             <option selected>Choose a major</option>
                             @foreach ($educationTypes as $educationType)
@@ -48,7 +48,7 @@
                         @error('code')
                         <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
                         @enderror
-                        <label for="degree_type_id" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">ОКС:</label>
+                        <label for="degree_type_id" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">{{ __('Degree type')}}:</label>
                         <select id="degree_type_id" name="degree_type_id" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-md">
                             <option selected>Choose a major</option>
                             @foreach ($degreeTypes as $degreeType)
@@ -68,7 +68,7 @@
                         @endif
 
                         <div class="py-6">
-                            <x-primary-button>Update major</x-primary-button>
+                            <x-primary-button>{{ __('Update major') }}</x-primary-button>
                         </div>
 
 

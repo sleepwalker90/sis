@@ -380,5 +380,13 @@
     "Study Plan Name": "Име на учебния план",
     "Delete study plan": "Изтрий учебен план",
     "Update Study Plan": "Промени Учебен План",
-    "Update your account's profile picture.": "Променете профилната си снимка."
+    "Update your account's profile picture.": "Променете профилната си снимка.",
+    "Day of the Week": "Ден от седмицата",
+    "Select a day": "Избери ден",
+    "Time Interval": "Времеви интервал",
+    "Format": "Формат",
+    "Current Office Hours": "Текущo приемно време",
+    "Remove": "Изтрий",
+    "e.g.": "напр.",
+    "Add Office Hours": "Добави приемно време"
 }

@@ -18,9 +18,13 @@
                 <ul>
                     @foreach($lecturerSchedules as $schedule)
                     @if($schedule->day_of_week === $day)
-                    <li class="mt-2">
-                        <span class="font-semibold">{{ $schedule->courseLecturerAssignment->course->name }}</span> ({{ ucfirst($schedule->class_type) }}):
-                        {{ \Carbon\Carbon::parse($schedule->start_time)->format('H:i') }} - {{ \Carbon\Carbon::parse($schedule->end_time)->format('H:i') }}
+                    <li class="mt-2 border border-gray-500 p-2 rounded-lg">
+                        <span class="font-semibold">{{ $schedule->courseLecturerAssignment->course->name }}</span> ({{ __(ucfirst($schedule->class_type)) }}):
+                        {{ \Carbon\Carbon::parse($schedule->start_time)->format('H:i') }} - {{ \Carbon\Carbon::parse($schedule->end_time)->format('H:i') }} - {{ __('Stream') }}: {{ $schedule->courseLecturerAssignment->stream->number }} 
+                        @isset($schedule->group->number)
+                        - {{ __('Group') }}: {{ $schedule->group->number }}
+                        @endisset
+                        
                     </li>
                     @endif
                     @endforeach

@@ -1,7 +1,7 @@
 <x-admin-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-            {{ __('Admin') }}
+            {{ __('Admin Dashboard') }}
         </h2>
     </x-slot>
 
@@ -10,7 +10,7 @@
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="flex items-center justify-between">
                     <div class="p-6 text-gray-900 dark:text-gray-100">
-                        {{ __('Users') }}
+                        {{ __('Admins') }}
                     </div>
                     <div class="m-5">
                         <a href="{{ route('admin.users.create') }}" class="font-medium bg-blue-500 hover:bg-blue-600 text-white py-2 px-8 rounded-md">{{ __('New user') }}</a>
@@ -51,7 +51,7 @@
                                     {{ __('Role') }}
                                 </th>
                                 <th scope="col" class="px-6 py-3">
-                                    {{ __('Status') }}
+                                    {{ __('Phone Number') }}
                                 </th>
                                 <th scope="col" class="px-6 py-3 text-center">
                                     {{ __('Actions') }}
@@ -62,7 +62,11 @@
                             @foreach ($users as $user)
                                 <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
                                     <th scope="row" class="flex items-center px-6 py-4 text-gray-900 whitespace-nowrap dark:text-white">
-                                        <img class="w-10 h-10 rounded-full" src="https://i.pravatar.cc/150?img={{$user->id}}" alt="Avatar image">
+                                        @if ($user->photo)
+                                            <img src="{{ asset('storage/' . $user->photo) }}" alt="Profile Photo" class="w-10 h-10 rounded-full">
+                                        @else
+                                            <img class="w-10 h-10 rounded-full" src="https://i.pravatar.cc/150?img={{Auth::user()->id}}" alt="Avatar image">
+                                        @endif
                                         <div class="ps-3">
                                             <div class="text-base font-semibold">{{ $user->first_name." ".$user->last_name}}</div>
                                             <div class="font-normal text-gray-500">{{ $user->email }}</div>

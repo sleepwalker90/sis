@@ -18,7 +18,7 @@
                         @foreach($groupSchedules as $schedule)
                             @if($schedule->day_of_week === $day)
                                 <li class="mt-2">
-                                    <span class="font-semibold">{{ $schedule->courseLecturerAssignment->course->name }}</span> ({{ ucfirst($schedule->class_type) }}): 
+                                    <span class="font-semibold">{{ $schedule->courseLecturerAssignment->course->name }}</span> ({{ __(ucfirst($schedule->class_type)) }}): 
                                     {{ date('H:i', strtotime($schedule->start_time)) }} - {{ date('H:i', strtotime($schedule->end_time)) }}
                                 </li>
                             @endif

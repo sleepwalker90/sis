@@ -21,7 +21,7 @@
 
                 <div class="flex items-center justify-end">
                     <div class="m-5">
-                        <a href="/courses/create" class="font-medium bg-blue-500 hover:bg-blue-600 text-white py-2 px-8 rounded-md">{{ __('Add new course') }}</a>
+                        <a href="{{ route('admin.courses.create') }}" class="font-medium bg-blue-500 hover:bg-blue-600 text-white py-2 px-8 rounded-md">{{ __('Add new course') }}</a>
                     </div>
                 </div>
 
@@ -30,12 +30,6 @@
                     <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
                         <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                             <tr>
-                                <th scope="col" class="p-4">
-                                    <div class="flex items-center">
-                                        <input id="checkbox-all-search" type="checkbox" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-                                        <label for="checkbox-all-search" class="sr-only">checkbox</label>
-                                    </div>
-                                </th>
                                 <th scope="col" class="p-3">
                                     {{ __('Course') }}
                                 </th>
@@ -57,10 +51,8 @@
                             @foreach ($courses as $course)
                             @if ($course->electiveGroup == null)
                             <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-                                <td class="w-4 p-4">
-                                </td>
                                 <td class="px-3 py-4">
-                                    <div class="font-semibold text-black"><a href="{{ route('admin.courses.show', ['course' => $course->id] ) }}">{{ $course->name }}</a></div>
+                                    <div class="font-semibold text-black">{{ $course->name }}</div>
                                 </td>
                                 <td class="px-3 py-4">
                                     {{ $course->credits }}
@@ -73,8 +65,8 @@
                                 </td>
                                 <td class="px-3 py-4 text-end">
                                     <div class="flex items-center justify-end space-x-4">
-                                        <a href="{{ route('courses.edit', ['course' => $course->id] ) }}" class="font-medium bg-blue-500 hover:bg-blue-600 text-white py-2 px-8 rounded-md">{{ __('Edit') }}</a>
-                                        <form method="POST" action="{{ route('courses.destroy', ['course' => $course->id]) }}" id="{{ $course->id }}">
+                                        <a href="{{ route('admin.courses.edit', ['course' => $course->id] ) }}" class="font-medium bg-blue-500 hover:bg-blue-600 text-white py-2 px-8 rounded-md">{{ __('Edit') }}</a>
+                                        <form method="POST" action="{{ route('admin.courses.destroy', ['course' => $course->id]) }}" id="{{ $course->id }}">
                                             @csrf
                                             @method('DELETE')
                                             <button class="bg-red-500 hover:bg-red-600 text-white py-2 px-8 rounded-md" type="button" x-on:click="openConfirmationModal('{{ $course->id }}', '{{ $course->name }}')">{{ __('Delete') }}</button>

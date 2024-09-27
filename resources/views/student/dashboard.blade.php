@@ -14,8 +14,11 @@
                     <div class="col-span-12 sm:col-span-12">
                         <div class="bg-white overflow-hidden shadow rounded-lg border px-4 py-5">
                             <div class="flex flex-col items-center px-4 py-5">
-                                <img src="https://randomuser.me/api/portraits/men/94.jpg" class="w-32 h-32 bg-gray-300 rounded-full mb-4 shrink-0">
-                                </img>
+                                @if (Auth::user()->photo)
+                                    <img src="{{ asset('storage/' . Auth::user()->photo) }}" alt="Profile Photo" class="w-32 h-32 rounded-full mb-4 shrink-0">
+                                @else
+                                    <img class="w-10 h-10 rounded-full" src="https://i.pravatar.cc/150?img={{Auth::user()->id}}" alt="Avatar image">
+                                @endif
                                 <h1 class="text-xl font-bold">{{ Auth::user()->first_name . " " . Auth::user()->middle_name . " " . Auth::user()->last_name }}</h1>
                                 <p class="text-gray-700">{{ Auth::user()->email . " - " . Auth::user()->phone_number }}</p>
                             </div>

@@ -14,28 +14,28 @@
                     <table class="min-w-full bg-white dark:bg-gray-800 border rounded-sm border-separate">
                         <thead>
                             <tr>
-                                <th class="border px-4 py-2">Student Name</th>
-                                <th class="border px-4 py-2">Faculty Number</th>
+                                <th class="border px-4 py-2">{{ __('Student Name') }}</th>
+                                <th class="border px-4 py-2">{{ __('Faculty Number') }}</th>
                                 @if ($assignment->course->hasLectures)
-                                    <th class="border px-4 py-2">Lecture</th>
+                                    <th class="border px-4 py-2">{{ __('Lecture') }} </th>
                                 @endif
                                 @if ($assignment->course->hasSeminars)
-                                    <th class="border px-4 py-2">Seminar</th>
+                                    <th class="border px-4 py-2">{{ __('Seminar') }}</th>
                                 @endif
                                 @if ($assignment->course->hasLabs)
-                                    <th class="border px-4 py-2">Lab</th>
+                                    <th class="border px-4 py-2">{{ __('Lab') }}</th>
                                 @endif
                                 @if ($assignment->course->hasExam)
-                                    <th class="border px-4 py-2">Exam</th>
+                                    <th class="border px-4 py-2">{{ __('Exam') }}</th>
                                 @endif
                                 @if ($assignment->course->hasCw)
-                                    <th class="border px-4 py-2">Course Work</th>
+                                    <th class="border px-4 py-2">{{ __('Course Work') }}</th>
                                 @endif
                                 @if ($assignment->course->hasOa)
-                                    <th class="border px-4 py-2">Ongoing Assessment</th>
+                                    <th class="border px-4 py-2">{{ __('Ongoing Assessment') }}</th>
                                 @endif
                                 @if ($assignment->course->hasCp)
-                                    <th class="border px-4 py-2">Course Project</th>
+                                    <th class="border px-4 py-2">{{ __('Course Project') }}</th>
                                 @endif
                             </tr>
                         </thead>

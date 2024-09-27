@@ -10,6 +10,8 @@ use App\Models\Tuition;
 use App\Models\User;
 use App\Rules\Egn;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\UserActivationMail;
 use Illuminate\Support\Str;
 
 class StudentController extends Controller
@@ -82,11 +84,16 @@ class StudentController extends Controller
 
         $user = User::create([
             'first_name' => $validated['first_name'],
+            'middle_name' => $validated['middle_name'],
             'last_name' => $validated['last_name'],
             'email' => $validated['email'],
             'phone_number' => $validated['phone_number'],
-            'password' => bcrypt('password'), // Set a default password
+            'password' => bcrypt('password'),//
+            'activation_token' => Str::random(60), // Set a default password
         ]);
+
+        $user->assignRole('Student');
+        Mail::to($user->email)->send(new UserActivationMail($user));
 
         $studyPlan = StudyPlan::findOrFail($validated['study_plan_id']);
         $academicYear = $studyPlan->academicYear->year;
@@ -133,6 +140,7 @@ class StudentController extends Controller
     {
         $validated = $request->validate([
             'first_name' => 'required|string|max:255',
+            'middle_name' => 'nullable|string|max:255',
             'last_name' => 'required|string|max:255',
             'email' => 'required|email|unique:users,email,' . $student->user_id,
             'phone_number' => 'nullable|string|max:255',
@@ -143,6 +151,7 @@ class StudentController extends Controller
 
         $student->user->update([
             'first_name' => $validated['first_name'],
+            'middle_name' => $validated['middle_name'],
             'last_name' => $validated['last_name'],
             'email' => $validated['email'],
             'phone_number' => $validated['phone_number'],
@@ -162,7 +171,11 @@ class StudentController extends Controller
      */
     public function destroy(Student $student)
     {
+        $user = $student->user;
         $student->delete();
+        $user->roles()->detach();
+        $user->delete();
+        
         return redirect()->route('admin.students.index')->with('success', 'Student deleted successfully.');
     }
 

@@ -19,7 +19,7 @@
                         <p class="mt-1">{{ __('You have already submitted an application for dormitory for academic year') }} {{ $application->academic_year }}.</p>
                         <p class="mt-1">{{ __('Your application is') }} {{ __($application->status) }}.</p>
                     @else
-                        <form method="POST" action="{{ route('dormitory_applications.store') }}">
+                        <form method="POST" action="{{ route('student.dormitory_applications.store') }}">
                             @csrf
 
                             <div class="flex items-center justify-end mt-4">

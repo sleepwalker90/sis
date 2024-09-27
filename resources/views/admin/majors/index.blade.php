@@ -22,7 +22,7 @@
                 
                 <div class="flex items-center justify-end">
                     <div class="m-5">
-                        <a href="/majors/create" class="font-medium bg-blue-500 hover:bg-blue-600 text-white py-2 px-8 rounded-md">{{ __('Add new major') }}</a>
+                        <a href="{{ route('admin.majors.create') }}" class="font-medium bg-blue-500 hover:bg-blue-600 text-white py-2 px-8 rounded-md">{{ __('Add new major') }}</a>
                     </div>
 
                 </div>
@@ -75,7 +75,7 @@
                                         <a href="{{ route('admin.majors.edit', ['major' => $major->id] ) }}" class="font-medium bg-blue-500 hover:bg-blue-600 text-white py-2 px-8 rounded-md">
                                             {{ __('Edit') }}
                                         </a>
-                                        <form method="POST" action="{{ route('majors.destroy', ['major' => $major->id]) }}" id="{{ $major->id }}">
+                                        <form method="POST" action="{{ route('admin.majors.destroy', ['major' => $major->id]) }}" id="{{ $major->id }}">
                                             @csrf
                                             @method('DELETE')
                                             <button class="bg-red-500 hover:bg-red-600 text-white py-2 px-8 rounded-md" type="button" x-on:click="openConfirmationModal('{{ $major->id }}', '{{ $major->name }}')">{{ __('Delete') }}</button>

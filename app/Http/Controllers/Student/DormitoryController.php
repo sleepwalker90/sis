@@ -7,7 +7,7 @@ use App\Models\Accommodation;
 use App\Models\DormitoryApplication;
 use Illuminate\Http\Request;
 
-class DomritoryController extends Controller
+class DormitoryController extends Controller
 {
     public function index()
     {

@@ -98,11 +98,15 @@ Route::middleware('auth','verified','role:Admin')
         Route::resource('courses', Admin\CourseController::class)->names([
             'index' => 'courses',
             'create' => 'courses.create',
+            'edit' => 'courses.edit',
             'store' => 'courses.store',
             'show' => 'courses.show',
         ]);
         Route::resource('majors', Admin\MajorController::class)->names([
             'index' => 'majors',
+            'create' => 'majors.create',
+            'edit' => 'majors.edit',
+            'destroy' => 'majors.destroy',
         ]);
         Route::resource('faculties', Admin\FacultyController::class)->names([
             'index' => 'faculties',

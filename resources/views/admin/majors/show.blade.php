@@ -14,7 +14,7 @@
                         {{ __('Study Plans') }}
                     </div>
                     <div class="m-5">
-                        <a href="/study-plans/create" class="font-medium bg-blue-500 hover:bg-blue-600 text-white py-2 px-8 rounded-md">{{ __('New study plan') }}</a>
+                        <a href="{{ route('admin.studyplans.create', $major) }}" class="font-medium bg-blue-500 hover:bg-blue-600 text-white py-2 px-8 rounded-md">{{ __('New study plan') }}</a>
                     </div>
 
                 </div>

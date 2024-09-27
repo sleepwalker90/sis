@@ -85,7 +85,7 @@
                     @endif
 
                     <div class="flex justify-end mt-4">
-                        <x-primary-button>Save Attestations</x-primary-button>
+                        <x-primary-button>{{ __('Save Attestations') }}</x-primary-button>
                     </div>
                 </form>
             </div>
